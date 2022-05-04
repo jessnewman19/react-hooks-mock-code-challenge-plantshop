@@ -3,6 +3,10 @@ import React, {useState} from "react";
 function PlantCard({plant}) {
   const [stock, setStock] = useState(true)
 
+  /*When "In Stock" button is clicked, stock state is 
+  set to the opposite and the color/text on the button
+  changes per CSS
+  */
   function handleStockClick() { 
     setStock(!stock)
   }

@@ -1,6 +1,15 @@
 import React, {useState} from "react";
 
 function NewPlantForm({updatePlantList}) {
+  /*
+  1. Set state for the form item. Keys are equal to the names
+  on the three inputs.
+  2. Add value to the inputs that are equal to the form state
+  3. Add onChange events to the inputs that handle the form change. 
+  4. Add onSubmit event to the form. When fired, a POST request is issued and the new form object passed into callback function that was declared in Plant Page.
+  5. In Plant Page, the new form item is passed into the callback function (updatePlantList) and the new data set of plants is rendered.
+  6. Form state is set back to initial state once submit button is clicked.
+  */
   const [formItem, setFormItem] = useState({ 
     name: "", 
     image: "",
@@ -22,7 +31,14 @@ function NewPlantForm({updatePlantList}) {
       body: JSON.stringify(formItem)
     })
     .then(response => response.json())
-    .then(newData => updatePlantList(newData))
+    .then(newData => { 
+      updatePlantList(newData)
+      setFormItem({ 
+        name: "", 
+        image: "",
+        price: 0,
+      })
+    })
   }
 
   return (
